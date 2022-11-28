@@ -79,3 +79,7 @@ tr {
   margin-right: 5px;
   padding-right: 10px;
 }
+
+.attendees-header {
+  margin: 30px 0;
+}

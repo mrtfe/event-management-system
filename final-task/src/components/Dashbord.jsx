@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../styles/dashbord.css";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
+import styled from "styled-components";
 
 export function Dashbord() {
   const [attendees, setAttendees] = useState([]);
@@ -75,16 +76,22 @@ export function Dashbord() {
       </div>
       <div className="attendees-container">
         <div className="attendees-header header">Attendee list</div>
+        {attendees.length === 0 && (
+          <StyledP>No attendees registered yet...</StyledP>
+        )}
         <table className="attendees-list">
-          <thead className="header-row">
-            <tr>
-              <th>First name</th>
-              <th>Last name</th>
-              <th>Email</th>
-              <th>Age</th>
-              <th></th>
-            </tr>
-          </thead>
+          {attendees.length > 0 && (
+            <thead className="header-row">
+              <tr>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Email</th>
+                <th>Age</th>
+                <th></th>
+              </tr>
+            </thead>
+          )}
+
           <tbody>
             {attendees.length > 0 &&
               attendees.map((att) => (
@@ -112,3 +119,9 @@ export function Dashbord() {
     </div>
   );
 }
+
+const StyledP = styled.p`
+  color: rgba(128, 128, 128, 0.877);
+  font-size: 18px;
+  margin-top: 15px;
+`;
