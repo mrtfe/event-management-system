@@ -69,23 +69,34 @@ export function Dashbord() {
       </div>
       <div className="attendees-container">
         <div className="attendees-header header">Attendee list</div>
-        <div className="attendees-list">
-          <div className="header-row">
-            <div className="header-column">First name</div>
-            <div className="header-column">Last name</div>
-            <div className="header-column">Email</div>
-            <div className="header-column">Age</div>
-          </div>
-          {attendees.length > 0 &&
-            attendees.map((att) => (
-              <div className="attendee-row" key={att.id}>
-                <div className="attendee-col">{att.attendee.firstName}</div>
-                <div className="attendee-col">{att.attendee.lastName}</div>
-                <div className="attendee-col">{att.attendee.email}</div>
-                <div className="attendee-col">{att.attendee.age}</div>
-              </div>
-            ))}
-        </div>
+        <table className="attendees-list">
+          <thead className="header-row">
+            <tr>
+              <th>First name</th>
+              <th>Last name</th>
+              <th>Email</th>
+              <th>Age</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {attendees.length > 0 &&
+              attendees.map((att) => (
+                <tr className="attendee-row" key={att.id}>
+                  <td className="attendee-col">{att.attendee.firstName}</td>
+                  <td className="attendee-col">{att.attendee.lastName}</td>
+                  <td className="attendee-col">{att.attendee.email}</td>
+                  <td className="attendee-col">{att.attendee.age}</td>
+                  <td>
+                    <button>
+                      <span class="material-symbols-outlined">delete</span>
+                    </button>
+                    <button>E</button>
+                  </td>
+                </tr>
+              ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );
