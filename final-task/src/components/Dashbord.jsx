@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "../styles/dashbord.css";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 export function Dashbord() {
   const [attendees, setAttendees] = useState([]);
@@ -27,6 +29,10 @@ export function Dashbord() {
     const id = randomIdGenerator();
     setAttendees([...attendees, { attendee, id }]);
     console.log(attendees);
+  };
+
+  const handleDelete = (e) => {
+    setAttendees(attendees.filter((item) => item.id !== e.id));
   };
   return (
     <div className="dashbord-wrapper">
@@ -88,10 +94,15 @@ export function Dashbord() {
                   <td className="attendee-col">{att.attendee.email}</td>
                   <td className="attendee-col">{att.attendee.age}</td>
                   <td>
-                    <button>
-                      <span class="material-symbols-outlined">delete</span>
+                    <button className="edit-btn">
+                      <EditIcon />
                     </button>
-                    <button>E</button>
+                    <button
+                      className="del-btn"
+                      onClick={() => handleDelete(att)}
+                    >
+                      <DeleteIcon />
+                    </button>
                   </td>
                 </tr>
               ))}

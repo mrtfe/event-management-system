@@ -61,3 +61,21 @@ td {
 tr {
   border-bottom: 1px solid rgb(221, 219, 219);
 }
+
+.edit-btn {
+  background-color: #3b43d6;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  margin-right: 5px;
+  padding-right: 10px;
+}
+
+.del-btn {
+  background-color: rgb(238, 86, 40);
+  color: white;
+  border: none;
+  border-radius: 3px;
+  margin-right: 5px;
+  padding-right: 10px;
+}
