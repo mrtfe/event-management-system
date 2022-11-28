@@ -58,3 +58,15 @@
   justify-content: space-between;
   font-weight: 600;
 }
+
+.attendee-row {
+  display: flex;
+  max-width: 80%;
+  width: 100%;
+  justify-content: space-between;
+  font-weight: 500;
+}
+
+.attendee-col {
+  font-size: 15px;
+}
