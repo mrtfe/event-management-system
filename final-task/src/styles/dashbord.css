@@ -1,0 +1,60 @@
+.dashbord-wrapper {
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}
+
+.header {
+  font-size: 30px;
+  font-weight: 600;
+  margin: 0 auto;
+}
+
+.form-header {
+  margin: 0 auto;
+}
+
+.form-container {
+  margin-top: 20px;
+  border: 2px solid rgba(0, 0, 0, 0.801);
+  padding: 30px 15px;
+}
+
+.form-container form {
+  margin-top: 15px;
+  display: flex;
+  gap: 10px;
+  max-width: 100%;
+}
+
+.form-container form input {
+  padding: 7px;
+  border: 2px solid rgba(128, 128, 128, 0.356);
+  border-radius: 3px;
+}
+
+.submit-btn {
+  padding: 5px 15px;
+  color: white;
+  font-weight: 500;
+  background-color: #3b43d6;
+  border: none;
+  border-radius: 5px;
+}
+
+.attendees-container {
+  max-width: 100%;
+}
+
+.attendees-header {
+  margin: 25px 0;
+}
+
+.header-row {
+  max-width: 80%;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  font-weight: 600;
+}

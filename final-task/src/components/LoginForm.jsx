@@ -9,7 +9,9 @@ export function LoginForm() {
         <input type="text" placeholder="username" />
         <input type="password" placeholder="password" />
         <p>Incorrect username or password</p>
-        <button type="button">Log in</button>
+        <button className="login-btn" type="button">
+          Log in
+        </button>
       </form>
     </div>
   );
