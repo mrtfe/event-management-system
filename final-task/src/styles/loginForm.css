@@ -4,9 +4,43 @@
   max-width: 300px;
   margin: 0 auto;
   padding-top: 100px;
+  text-align: center;
+}
+
+.login-header {
+  font-size: 30px;
+  font-weight: 600;
 }
 
 .login-form {
   display: flex;
   flex-direction: column;
+  margin: 50px;
+}
+
+.login-form input {
+  padding: 7px;
+  margin-bottom: 20px;
+  border: 2px solid rgba(128, 128, 128, 0.356);
+  border-radius: 3px;
+}
+
+.login-form input::placeholder {
+  color: rgb(51, 50, 50);
+}
+
+p {
+  color: rgb(247, 76, 54);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+button {
+  margin: 10px 45px;
+  padding: 10px 15px;
+  color: white;
+  font-weight: 500;
+  background-color: #3b43d6;
+  border: none;
+  border-radius: 5px;
 }
