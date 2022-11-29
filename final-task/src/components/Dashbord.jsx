@@ -30,13 +30,6 @@ export function Dashbord() {
     e.preventDefault();
     const id = randomIdGenerator();
     setAttendees([...attendees, { ...attendee, id }]);
-    setAttendee({
-      id: "",
-      firstName: "",
-      lastName: "",
-      email: "",
-      age: "",
-    });
   };
 
   const handleDelete = (e) => {
@@ -90,6 +83,7 @@ export function Dashbord() {
         <form action="submit" onSubmit={handleSubmit}>
           <input
             type="text"
+            maxLength="20"
             placeholder="First name"
             required
             name="firstName"
@@ -98,6 +92,7 @@ export function Dashbord() {
           />
           <input
             type="text"
+            maxLength="20"
             placeholder="Last name"
             required
             name="lastName"
@@ -106,6 +101,7 @@ export function Dashbord() {
           />
           <input
             type="email"
+            maxLength="47"
             placeholder="Email"
             required
             name="email"
@@ -114,6 +110,8 @@ export function Dashbord() {
           />
           <input
             type="number"
+            min="18"
+            max="120"
             placeholder="Age"
             required
             name="age"
@@ -130,44 +128,42 @@ export function Dashbord() {
         {attendees.length === 0 && (
           <StyledP>No attendees registered yet...</StyledP>
         )}
-        <form>
-          <table className="attendees-list">
-            {attendees.length > 0 && (
-              <thead className="header-row">
-                <tr>
-                  <th>First name</th>
-                  <th>Last name</th>
-                  <th>Email</th>
-                  <th>Age</th>
-                  <th></th>
-                </tr>
-              </thead>
-            )}
+        <table className="attendees-list">
+          {attendees.length > 0 && (
+            <thead className="header-row">
+              <tr>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Email</th>
+                <th>Age</th>
+                <th></th>
+              </tr>
+            </thead>
+          )}
 
-            <tbody>
-              {attendees.length > 0 &&
-                attendees.map((item) => (
-                  <>
-                    {editableId === item.id ? (
-                      <EditAttendeeRow
-                        handleEditInputChange={handleEditInputChange}
-                        item={item}
-                        editableData={editableData}
-                        handleEditSave={handleEditSave}
-                        handleEditCancel={handleEditCancel}
-                      />
-                    ) : (
-                      <AttendeeRow
-                        item={item}
-                        handleDelete={handleDelete}
-                        handleEditClick={handleEditClick}
-                      />
-                    )}
-                  </>
-                ))}
-            </tbody>
-          </table>
-        </form>
+          <tbody>
+            {attendees.length > 0 &&
+              attendees.map((item) => (
+                <>
+                  {editableId === item.id ? (
+                    <EditAttendeeRow
+                      handleEditInputChange={handleEditInputChange}
+                      item={item}
+                      editableData={editableData}
+                      handleEditSave={handleEditSave}
+                      handleEditCancel={handleEditCancel}
+                    />
+                  ) : (
+                    <AttendeeRow
+                      item={item}
+                      handleDelete={handleDelete}
+                      handleEditClick={handleEditClick}
+                    />
+                  )}
+                </>
+              ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );
