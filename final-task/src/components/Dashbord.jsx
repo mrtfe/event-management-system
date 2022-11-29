@@ -16,6 +16,14 @@ export function Dashbord() {
 
   const [editableId, setEditableId] = useState(null);
 
+  const [edtableData, setEditableData] = useState({
+    id: "",
+    firstName: "",
+    lastName: "",
+    email: "",
+    age: "",
+  });
+
   const randomIdGenerator = () => {
     return Math.floor(Math.random() * 100000);
   };
@@ -25,6 +33,15 @@ export function Dashbord() {
     const inputData = e.target.value;
     setAttendee({ ...attendee, [inputName]: inputData });
     console.log(attendee);
+  };
+
+  const handleEditChange = (e, att) => {
+    e.preventDefault();
+    console.log(att.id + " clicked");
+    const inputName = e.target.name;
+    const inputData = e.target.value;
+    setEditableData({ ...attendee, [inputName]: inputData });
+    console.log(edtableData);
   };
 
   const handleSubmit = (e) => {
@@ -42,6 +59,13 @@ export function Dashbord() {
     e.preventDefault();
     // console.log(att.id + "clicked");
     setEditableId(att.id);
+    const oldValues = {
+      firstName: att.firstName,
+      lastName: att.lastName,
+      email: att.email,
+      age: att.age,
+    };
+    setEditableData(oldValues);
   };
 
   return (
@@ -107,7 +131,11 @@ export function Dashbord() {
                 attendees.map((att) => (
                   <>
                     {editableId === att.id ? (
-                      <EditAttendeeRow />
+                      <EditAttendeeRow
+                        handleEditChange={handleEditChange}
+                        att={att}
+                        edtableData={edtableData}
+                      />
                     ) : (
                       <AttendeeRow
                         att={att}
