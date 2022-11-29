@@ -30,6 +30,13 @@ export function Dashbord() {
     e.preventDefault();
     const id = randomIdGenerator();
     setAttendees([...attendees, { ...attendee, id }]);
+    setAttendee({
+      id: "",
+      firstName: "",
+      lastName: "",
+      email: "",
+      age: "",
+    });
   };
 
   const handleDelete = (e) => {
@@ -86,20 +93,23 @@ export function Dashbord() {
             placeholder="First name"
             required
             name="firstName"
+            value={attendee.firstName}
             onChange={handleInputChange}
           />
           <input
             type="text"
             placeholder="Last name"
             required
-            name="email"
+            name="lastName"
+            value={attendee.lastName}
             onChange={handleInputChange}
           />
           <input
             type="email"
             placeholder="Email"
             required
-            name="lastName"
+            name="email"
+            value={attendee.email}
             onChange={handleInputChange}
           />
           <input
@@ -107,6 +117,7 @@ export function Dashbord() {
             placeholder="Age"
             required
             name="age"
+            value={attendee.age}
             onChange={handleInputChange}
           />
           <button type="submit" className="submit-btn">
