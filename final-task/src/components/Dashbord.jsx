@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "../styles/dashbord.css";
-import EditIcon from "@mui/icons-material/Edit";
-import DeleteIcon from "@mui/icons-material/Delete";
 import styled from "styled-components";
+import { AttendeeRow } from "./AttendeeRow";
+import { EditAttendeeRow } from "./EditAttendeeRow";
 
 export function Dashbord() {
   const [attendees, setAttendees] = useState([]);
@@ -13,6 +13,8 @@ export function Dashbord() {
     email: "",
     age: "",
   });
+
+  const [editableId, setEditableId] = useState(null);
 
   const randomIdGenerator = () => {
     return Math.floor(Math.random() * 100000);
@@ -35,6 +37,13 @@ export function Dashbord() {
   const handleDelete = (e) => {
     setAttendees(attendees.filter((item) => item.id !== e.id));
   };
+
+  const handleEdit = (e, att) => {
+    e.preventDefault();
+    // console.log(att.id + "clicked");
+    setEditableId(att.id);
+  };
+
   return (
     <div className="dashbord-wrapper">
       <div className="dashbord-header header">Management dashbord</div>
@@ -79,42 +88,38 @@ export function Dashbord() {
         {attendees.length === 0 && (
           <StyledP>No attendees registered yet...</StyledP>
         )}
-        <table className="attendees-list">
-          {attendees.length > 0 && (
-            <thead className="header-row">
-              <tr>
-                <th>First name</th>
-                <th>Last name</th>
-                <th>Email</th>
-                <th>Age</th>
-                <th></th>
-              </tr>
-            </thead>
-          )}
-
-          <tbody>
-            {attendees.length > 0 &&
-              attendees.map((att) => (
-                <tr className="attendee-row" key={att.id}>
-                  <td className="attendee-col">{att.attendee.firstName}</td>
-                  <td className="attendee-col">{att.attendee.lastName}</td>
-                  <td className="attendee-col">{att.attendee.email}</td>
-                  <td className="attendee-col">{att.attendee.age}</td>
-                  <td>
-                    <button className="edit-btn">
-                      <EditIcon />
-                    </button>
-                    <button
-                      className="del-btn"
-                      onClick={() => handleDelete(att)}
-                    >
-                      <DeleteIcon />
-                    </button>
-                  </td>
+        <form>
+          <table className="attendees-list">
+            {attendees.length > 0 && (
+              <thead className="header-row">
+                <tr>
+                  <th>First name</th>
+                  <th>Last name</th>
+                  <th>Email</th>
+                  <th>Age</th>
+                  <th></th>
                 </tr>
-              ))}
-          </tbody>
-        </table>
+              </thead>
+            )}
+
+            <tbody>
+              {attendees.length > 0 &&
+                attendees.map((att) => (
+                  <>
+                    {editableId === att.id ? (
+                      <EditAttendeeRow />
+                    ) : (
+                      <AttendeeRow
+                        att={att}
+                        handleDelete={handleDelete}
+                        handleEdit={handleEdit}
+                      />
+                    )}
+                  </>
+                ))}
+            </tbody>
+          </table>{" "}
+        </form>
       </div>
     </div>
   );

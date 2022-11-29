@@ -43,4 +43,5 @@ p {
   background-color: #3b43d6;
   border: none;
   border-radius: 5px;
+  cursor: pointer;
 }

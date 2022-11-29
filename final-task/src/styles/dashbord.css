@@ -41,6 +41,7 @@
   background-color: #3b43d6;
   border: none;
   border-radius: 5px;
+  cursor: pointer;
 }
 
 .attendee-col {
@@ -64,20 +65,26 @@ tr {
 
 .edit-btn {
   background-color: #3b43d6;
-  color: white;
-  border: none;
-  border-radius: 3px;
-  margin-right: 5px;
-  padding-right: 10px;
 }
 
 .del-btn {
   background-color: rgb(238, 86, 40);
+}
+
+.save-btn {
+  background-color: rgb(95, 197, 27);
+}
+
+.cancel-btn {
+  background-color: rgb(197, 27, 27);
+}
+
+.btn {
   color: white;
   border: none;
   border-radius: 3px;
   margin-right: 5px;
-  padding-right: 10px;
+  cursor: pointer;
 }
 
 .attendees-header {
