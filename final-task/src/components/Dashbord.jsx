@@ -20,38 +20,25 @@ export function Dashbord() {
     return Math.floor(Math.random() * 100000);
   };
 
-  const handleChange = (e) => {
+  const handleInputChange = (e) => {
     const inputName = e.target.name;
     const inputData = e.target.value;
     setAttendee({ ...attendee, [inputName]: inputData });
-    console.log(attendee);
-  };
-
-  const handleEditChange = (e, att) => {
-    e.preventDefault();
-    console.log(att.id + " clicked");
-    const inputName = e.target.name;
-    const inputData = e.target.value;
-    setEditableData({ ...attendee, [inputName]: inputData });
-    console.log(editableData);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const id = randomIdGenerator();
     setAttendees([...attendees, { ...attendee, id }]);
-    console.log(attendees);
   };
 
   const handleDelete = (e) => {
     setAttendees(attendees.filter((item) => item.id !== e.id));
   };
 
-  const handleEdit = (e, item) => {
+  const handleEditClick = (e, item) => {
     e.preventDefault();
-    console.log(item.id);
     setEditableId(item.id);
-    console.log(item.firstName);
     const oldValues = {
       firstName: item.firstName,
       lastName: item.lastName,
@@ -59,6 +46,13 @@ export function Dashbord() {
       age: item.age,
     };
     setEditableData(oldValues);
+  };
+
+  const handleEditInputChange = (e, att) => {
+    e.preventDefault();
+    const inputName = e.target.name;
+    const inputData = e.target.value;
+    setEditableData({ ...attendee, [inputName]: inputData });
   };
 
   const handleEditSave = (e) => {
@@ -92,28 +86,28 @@ export function Dashbord() {
             placeholder="First name"
             required
             name="firstName"
-            onChange={handleChange}
+            onChange={handleInputChange}
           />
           <input
             type="text"
             placeholder="Last name"
             required
             name="email"
-            onChange={handleChange}
+            onChange={handleInputChange}
           />
           <input
             type="email"
             placeholder="Email"
             required
             name="lastName"
-            onChange={handleChange}
+            onChange={handleInputChange}
           />
           <input
             type="number"
             placeholder="Age"
             required
             name="age"
-            onChange={handleChange}
+            onChange={handleInputChange}
           />
           <button type="submit" className="submit-btn">
             Submit
@@ -145,7 +139,7 @@ export function Dashbord() {
                   <>
                     {editableId === item.id ? (
                       <EditAttendeeRow
-                        handleEditChange={handleEditChange}
+                        handleEditInputChange={handleEditInputChange}
                         item={item}
                         editableData={editableData}
                         handleEditSave={handleEditSave}
@@ -155,7 +149,7 @@ export function Dashbord() {
                       <AttendeeRow
                         item={item}
                         handleDelete={handleDelete}
-                        handleEdit={handleEdit}
+                        handleEditClick={handleEditClick}
                       />
                     )}
                   </>

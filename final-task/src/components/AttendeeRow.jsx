@@ -12,7 +12,7 @@ export function AttendeeRow(props) {
       <td>
         <button
           className="edit-btn btn"
-          onClick={(e) => props.handleEdit(e, props.item)}
+          onClick={(e) => props.handleEditClick(e, props.item)}
         >
           <EditIcon />
         </button>

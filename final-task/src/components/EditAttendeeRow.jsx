@@ -11,7 +11,7 @@ export function EditAttendeeRow(props) {
           required
           name="firstName"
           value={props.editableData.firstName}
-          onChange={(e) => props.handleEditChange(e, props.item)}
+          onChange={(e) => props.handleEditInputChange(e, props.item)}
         />
       </td>
       <td>
@@ -20,7 +20,7 @@ export function EditAttendeeRow(props) {
           required
           name="lastName"
           value={props.editableData.lastName}
-          onChange={(e) => props.handleEditChange(e, props.item)}
+          onChange={(e) => props.handleEditInputChange(e, props.item)}
         />
       </td>
       <td>
@@ -29,7 +29,7 @@ export function EditAttendeeRow(props) {
           required
           name="email"
           value={props.editableData.email}
-          onChange={(e) => props.handleEditChange(e, props.item)}
+          onChange={(e) => props.handleEditInputChange(e, props.item)}
         />
       </td>
       <td>
@@ -38,7 +38,7 @@ export function EditAttendeeRow(props) {
           required
           name="age"
           value={props.editableData.age}
-          onChange={(e) => props.handleEditChange(e, props.item)}
+          onChange={(e) => props.handleEditInputChange(e, props.item)}
         />
       </td>
       <td>
