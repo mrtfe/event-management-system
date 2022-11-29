@@ -49,7 +49,11 @@ export function EditAttendeeRow(props) {
         >
           <CheckIcon />
         </button>
-        <button type="button" className="cancel-btn btn">
+        <button
+          type="button"
+          className="cancel-btn btn"
+          onClick={props.handleEditCancel}
+        >
           <CancelIcon />
         </button>
       </td>

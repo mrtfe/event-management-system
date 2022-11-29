@@ -13,16 +13,8 @@ export function Dashbord() {
     email: "",
     age: "",
   });
-
   const [editableId, setEditableId] = useState(null);
-
-  const [editableData, setEditableData] = useState({
-    id: "",
-    firstName: "",
-    lastName: "",
-    email: "",
-    age: "",
-  });
+  const [editableData, setEditableData] = useState(attendee);
 
   const randomIdGenerator = () => {
     return Math.floor(Math.random() * 100000);
@@ -82,6 +74,10 @@ export function Dashbord() {
     const newAttendees = [...attendees];
     newAttendees[itemIndex] = editedData;
     setAttendees(newAttendees);
+    setEditableId(null);
+  };
+
+  const handleEditCancel = () => {
     setEditableId(null);
   };
 
@@ -153,6 +149,7 @@ export function Dashbord() {
                         item={item}
                         editableData={editableData}
                         handleEditSave={handleEditSave}
+                        handleEditCancel={handleEditCancel}
                       />
                     ) : (
                       <AttendeeRow
