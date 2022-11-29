@@ -10,8 +10,8 @@ export function EditAttendeeRow(props) {
           type="text"
           required
           name="firstName"
-          value={props.edtableData.firstName}
-          onChange={(e) => props.handleEditChange(e, props.att)}
+          value={props.editableData.firstName}
+          onChange={(e) => props.handleEditChange(e, props.item)}
         />
       </td>
       <td>
@@ -19,7 +19,8 @@ export function EditAttendeeRow(props) {
           type="text"
           required
           name="lastName"
-          onChange={(e) => props.handleEditChange(e, props.att)}
+          value={props.editableData.lastName}
+          onChange={(e) => props.handleEditChange(e, props.item)}
         />
       </td>
       <td>
@@ -27,7 +28,8 @@ export function EditAttendeeRow(props) {
           type="email"
           required
           name="email"
-          onChange={(e) => props.handleEditChange(e, props.att)}
+          value={props.editableData.email}
+          onChange={(e) => props.handleEditChange(e, props.item)}
         />
       </td>
       <td>
@@ -35,11 +37,16 @@ export function EditAttendeeRow(props) {
           type="number"
           required
           name="age"
-          onChange={(e) => props.handleEditChange(e, props.att)}
+          value={props.editableData.age}
+          onChange={(e) => props.handleEditChange(e, props.item)}
         />
       </td>
       <td>
-        <button type="button" className="save-btn btn">
+        <button
+          type="button"
+          className="save-btn btn"
+          onClick={props.handleEditSave}
+        >
           <CheckIcon />
         </button>
         <button type="button" className="cancel-btn btn">

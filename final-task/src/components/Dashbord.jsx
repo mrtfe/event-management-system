@@ -16,7 +16,7 @@ export function Dashbord() {
 
   const [editableId, setEditableId] = useState(null);
 
-  const [edtableData, setEditableData] = useState({
+  const [editableData, setEditableData] = useState({
     id: "",
     firstName: "",
     lastName: "",
@@ -41,13 +41,13 @@ export function Dashbord() {
     const inputName = e.target.name;
     const inputData = e.target.value;
     setEditableData({ ...attendee, [inputName]: inputData });
-    console.log(edtableData);
+    console.log(editableData);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const id = randomIdGenerator();
-    setAttendees([...attendees, { attendee, id }]);
+    setAttendees([...attendees, { ...attendee, id }]);
     console.log(attendees);
   };
 
@@ -55,17 +55,34 @@ export function Dashbord() {
     setAttendees(attendees.filter((item) => item.id !== e.id));
   };
 
-  const handleEdit = (e, att) => {
+  const handleEdit = (e, item) => {
     e.preventDefault();
-    // console.log(att.id + "clicked");
-    setEditableId(att.id);
+    console.log(item.id);
+    setEditableId(item.id);
+    console.log(item.firstName);
     const oldValues = {
-      firstName: att.firstName,
-      lastName: att.lastName,
-      email: att.email,
-      age: att.age,
+      firstName: item.firstName,
+      lastName: item.lastName,
+      email: item.email,
+      age: item.age,
     };
     setEditableData(oldValues);
+  };
+
+  const handleEditSave = (e) => {
+    e.preventDefault();
+    const editedData = {
+      id: editableId,
+      firstName: editableData.firstName,
+      lastName: editableData.lastName,
+      email: editableData.email,
+      age: editableData.age,
+    };
+    const itemIndex = attendees.findIndex((item) => item.id === editableId);
+    const newAttendees = [...attendees];
+    newAttendees[itemIndex] = editedData;
+    setAttendees(newAttendees);
+    setEditableId(null);
   };
 
   return (
@@ -128,17 +145,18 @@ export function Dashbord() {
 
             <tbody>
               {attendees.length > 0 &&
-                attendees.map((att) => (
+                attendees.map((item) => (
                   <>
-                    {editableId === att.id ? (
+                    {editableId === item.id ? (
                       <EditAttendeeRow
                         handleEditChange={handleEditChange}
-                        att={att}
-                        edtableData={edtableData}
+                        item={item}
+                        editableData={editableData}
+                        handleEditSave={handleEditSave}
                       />
                     ) : (
                       <AttendeeRow
-                        att={att}
+                        item={item}
                         handleDelete={handleDelete}
                         handleEdit={handleEdit}
                       />
@@ -146,7 +164,7 @@ export function Dashbord() {
                   </>
                 ))}
             </tbody>
-          </table>{" "}
+          </table>
         </form>
       </div>
     </div>
