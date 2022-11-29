@@ -1,5 +1,5 @@
 [
-  { "userName": "martynas", "password": "finalexam" },
-  { "userName": "eli", "password": "letscheckit" },
-  { "userName": "jpsk", "password": "letmesee" }
+  { "id": "1", "userName": "jpsk", "password": "letmesee" },
+  { "id": "2", "userName": "eli", "password": "letscheck" },
+  { "id": "3", "userName": "martynas", "password": "welcome" }
 ]
