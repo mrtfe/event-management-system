@@ -1,6 +1,6 @@
 import React from "react";
 import "../styles/loginForm.css";
-import admins from "../data/admins.json";
+// import admins from "../data/admins.json";
 
 export function LoginForm(props) {
   const handleChange = (e) => {
@@ -9,34 +9,32 @@ export function LoginForm(props) {
     props.setUser({ ...props.user, [inputName]: inputData });
   };
 
-  const checkIfUser = () => {
-    const adminsUsernames = admins.map((admin) => admin.userName);
-    const adminsPasswords = admins.map((admin) => admin.password);
-    const currentUserName = props.user.userName;
-    const currentPassword = props.user.password;
-    console.log(currentUserName);
-    console.log(currentPassword);
-    const loggedUser = adminsUsernames.map(
-      (item) => item.username === currentUserName
-    );
-    console.log(loggedUser);
-
-    // const loggedUser = adminsUsernames.find(
-    //   (item) => item.userName === props.user.userName
-    // );
-    // console.log(loggedUser);
-  };
+  // const checkIfUser = () => {
+  //   const adminsUsernames = admins.map((admin) => admin.userName);
+  //   const adminsPasswords = admins.map((admin) => admin.password);
+  //   const currentUserName = props.user.userName;
+  //   const currentPassword = props.user.password;
+  //   console.log(currentUserName);
+  //   console.log(currentPassword);
+  //   const loggedUser = adminsUsernames.map(
+  //     (item) => item.username === currentUserName
+  //   );
+  //   console.log(loggedUser);
+  // const loggedUser = adminsUsernames.find(
+  //   (item) => item.userName === props.user.userName
+  // );
+  // console.log(loggedUser);
+  // };
 
   const handleSubmit = (e) => {
-    checkIfUser();
-
-    // if (props.user.userName === "admin" && props.user.password === "cafe") {
-    //   props.setLoggedIn(true);
-    //   props.setError(false);
-    // } else {
-    //   props.setError(true);
-    //   props.setLoggedIn(false);
-    // }
+    // checkIfUser();
+    if (props.user.userName === "admin" && props.user.password === "cafe") {
+      props.setLoggedIn(true);
+      props.setError(false);
+    } else {
+      props.setError(true);
+      props.setLoggedIn(false);
+    }
   };
 
   return (
