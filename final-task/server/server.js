@@ -27,16 +27,19 @@ app.get(path, (req, res) => {
   res.json(attendees);
 });
 
-// function appendFile(filepath) {
-//   const file = fs.appendFile(filepath, "utf8", function (err) {
-//     if (err) throw err;
-//     console.log("Data is appended to file successfully.");
-//   });
-// }
+function appendFile(filepath) {
+  const file = fs.appendFile(filepath, "data to append", function (err) {
+    if (err) throw err;
+    console.log("Data is appended to file successfully.");
+    return file;
+  });
+}
 
-// app.post(path, function (req, res) {
-//   const postAttendees = appendFile(path);
-//   res.send(postAttendees);
-// });
+app.post(path, function (req, res) {
+  const result = req.json();
+  const postAttendees = appendFile(path, req);
+  console.log(result);
+  res.send(postAttendees);
+});
 
 app.listen(port, () => console.log(`server started on port: ${port} `));

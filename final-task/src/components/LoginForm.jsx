@@ -29,6 +29,7 @@ export function LoginForm(props) {
   return (
     <div className="login-container">
       <div className="login-header">Welcome to event management system</div>
+      <div className="login">Login</div>
       <form action="submit" className="login-form">
         <input
           type="text"

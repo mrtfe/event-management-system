@@ -3,7 +3,6 @@ import "../styles/dashbord.css";
 import styled from "styled-components";
 import { AttendeeRow } from "./AttendeeRow";
 import { EditAttendeeRow } from "./EditAttendeeRow";
-// import axios from "axios";
 
 export function Dashbord() {
   const [attendees, setAttendees] = useState([]);
@@ -21,7 +20,9 @@ export function Dashbord() {
     fetch("/api/attendees")
       .then((res) => res.json())
       .then((data) => setAttendees(data))
+      .then(console.log(attendees))
       .catch((err) => console.log("error occured"));
+    console.log(attendees);
   }, []);
 
   const randomIdGenerator = () => {
@@ -38,6 +39,7 @@ export function Dashbord() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const id = randomIdGenerator();
+
     fetch("/api/attendees", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
