@@ -2,6 +2,7 @@ import "./App.css";
 import { LoginForm } from "./components/LoginForm";
 import { Dashbord } from "./components/Dashbord";
 import { useState } from "react";
+import { ApiTesting } from "./components/ApiTesting";
 
 function App() {
   const [user, setUser] = useState({
@@ -25,6 +26,7 @@ function App() {
       )}
 
       {loggedIn && <Dashbord />}
+      <ApiTesting />
     </div>
   );
 }

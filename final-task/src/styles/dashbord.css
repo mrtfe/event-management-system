@@ -123,4 +123,19 @@ tr {
     margin: 0 auto;
     padding: 5px 30px;
   }
+  .attendee-col {
+    font-size: 12px;
+  }
+}
+
+@media (width <= 370px) {
+  .attendee-col {
+    font-size: 12px;
+  }
+
+  th,
+  td {
+    text-align: left;
+    padding: 1px;
+  }
 }

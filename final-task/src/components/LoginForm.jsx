@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/loginForm.css";
-// import admins from "../data/admins.json";
 
 export function LoginForm(props) {
+  const [admins, setAdmins] = useState();
+
+  useEffect(() => {
+    const fetchAdmins = async () => {
+      const load = await fetch("./data/admins.json");
+      const data = await load.json();
+      console.log(data);
+    };
+  }, []);
+
   const handleChange = (e) => {
     const inputName = e.target.name;
     const inputData = e.target.value;
@@ -12,18 +21,31 @@ export function LoginForm(props) {
   // const checkIfUser = () => {
   //   const adminsUsernames = admins.map((admin) => admin.userName);
   //   const adminsPasswords = admins.map((admin) => admin.password);
-  //   const currentUserName = props.user.userName;
-  //   const currentPassword = props.user.password;
-  //   console.log(currentUserName);
-  //   console.log(currentPassword);
-  //   const loggedUser = adminsUsernames.map(
-  //     (item) => item.username === currentUserName
+
+  //   console.log(adminsUsernames);
+  //   console.log(adminsPasswords);
+
+  //   const index = adminsUsernames.findIndex(
+  //     (item) => item === props.user.userName
   //   );
-  //   console.log(loggedUser);
-  // const loggedUser = adminsUsernames.find(
-  //   (item) => item.userName === props.user.userName
-  // );
-  // console.log(loggedUser);
+
+  //   if (
+  //     adminsUsernames[index] === adminsPasswords[index](console.log("hooray"))
+  //   )
+  //     console.log(index);
+
+  //   //   const currentUserName = props.user.userName;
+  //   //   const currentPassword = props.user.password;
+  //   //   console.log(currentUserName);
+  //   //   console.log(currentPassword);
+  //   //   const loggedUser = adminsUsernames.map(
+  //   //     (item) => item.username === currentUserName
+  //   //   );
+  //   //   console.log(loggedUser);
+  //   // const loggedUser = adminsUsernames.find(
+  //   //   (item) => item.userName === props.user.userName
+  //   // );
+  //   // console.log(loggedUser);
   // };
 
   const handleSubmit = (e) => {
