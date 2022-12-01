@@ -49,7 +49,9 @@ export function Dashbord() {
   };
 
   const handleDelete = (e) => {
-    setAttendees(attendees.filter((item) => item.id !== e.id));
+    axios
+      .delete(`/api/attendees/${e.id}`)
+      .then(setAttendees(attendees.filter((item) => item.id !== e.id)));
   };
 
   const handleEditClick = (e, item) => {

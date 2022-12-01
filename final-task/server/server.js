@@ -56,4 +56,17 @@ app.post(attendeesPath, function (req, res) {
   res.send(newAttendee);
 });
 
+function removeAttendee(id) {
+  const attendees = readJsonFileSync("./attendees.json", "utf8");
+  const result = attendees.filter((item) => item.id !== parseInt(id));
+  console.log(id);
+  fs.writeFileSync("./attendees.json", JSON.stringify(result, null));
+}
+
+app.delete(`${attendeesPath}/:id`, (req, res) => {
+  removeAttendee(req.params.id);
+  console.log(req.params.id);
+  res.send();
+});
+
 app.listen(port, () => console.log(`server started on port: ${port} `));
