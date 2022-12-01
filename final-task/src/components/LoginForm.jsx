@@ -17,48 +17,13 @@ export function LoginForm(props) {
   };
 
   const checkIfAdminIsLogging = () => {
-    console.log(admins);
-  };
-
-  // const checkIfUser = () => {
-  //   const adminsUsernames = admins.map((admin) => admin.userName);
-  //   const adminsPasswords = admins.map((admin) => admin.password);
-
-  //   console.log(adminsUsernames);
-  //   console.log(adminsPasswords);
-
-  //   const index = adminsUsernames.findIndex(
-  //     (item) => item === props.user.userName
-  //   );
-
-  //   if (
-  //     adminsUsernames[index] === adminsPasswords[index](console.log("hooray"))
-  //   )
-  //     console.log(index);
-
-  //   //   const currentUserName = props.user.userName;
-  //   //   const currentPassword = props.user.password;
-  //   //   console.log(currentUserName);
-  //   //   console.log(currentPassword);
-  //   //   const loggedUser = adminsUsernames.map(
-  //   //     (item) => item.username === currentUserName
-  //   //   );
-  //   //   console.log(loggedUser);
-  //   // const loggedUser = adminsUsernames.find(
-  //   //   (item) => item.userName === props.user.userName
-  //   // );
-  //   // console.log(loggedUser);
-  // };
-
-  const handleSubmit = (e) => {
-    // checkIfUser();
-    if (props.user.userName === "admin" && props.user.password === "cafe") {
+    const index = admins.findIndex(
+      (admin) => admin.userName === props.user.userName
+    );
+    if (index >= 0 && admins[index].password === props.user.password) {
       props.setLoggedIn(true);
       props.setError(false);
-    } else {
-      props.setError(true);
-      props.setLoggedIn(false);
-    }
+    } else props.setError(true);
   };
 
   return (
