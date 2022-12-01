@@ -2,14 +2,14 @@ import "./App.css";
 import { LoginForm } from "./components/LoginForm";
 import { Dashbord } from "./components/Dashbord";
 import { useState } from "react";
-import { ApiTesting } from "./components/ApiTesting";
+// import { ApiTesting } from "./components/ApiTesting";
 
 function App() {
   const [user, setUser] = useState({
     userName: "",
     password: "",
   });
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(true);
   const [error, setError] = useState(false);
 
   return (
@@ -26,7 +26,7 @@ function App() {
       )}
 
       {loggedIn && <Dashbord />}
-      <ApiTesting />
+      {/* <ApiTesting /> */}
     </div>
   );
 }

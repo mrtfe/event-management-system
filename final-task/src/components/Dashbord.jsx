@@ -3,6 +3,7 @@ import "../styles/dashbord.css";
 import styled from "styled-components";
 import { AttendeeRow } from "./AttendeeRow";
 import { EditAttendeeRow } from "./EditAttendeeRow";
+// import axios from "axios";
 
 export function Dashbord() {
   const [attendees, setAttendees] = useState([]);
@@ -19,7 +20,8 @@ export function Dashbord() {
   useEffect(() => {
     fetch("/api/attendees")
       .then((res) => res.json())
-      .then((attendees) => console.log(attendees));
+      .then((data) => setAttendees(data))
+      .catch((err) => console.log("error occured"));
   }, []);
 
   const randomIdGenerator = () => {
@@ -30,12 +32,21 @@ export function Dashbord() {
     const inputName = e.target.name;
     const inputData = e.target.value;
     setAttendee({ ...attendee, [inputName]: inputData });
+    console.log(attendee);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const id = randomIdGenerator();
-    setAttendees([...attendees, { ...attendee, id }]);
+    fetch("/api/attendees", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(attendee),
+    })
+      .then((res) => {
+        res.json();
+      })
+      .then((data) => setAttendees((att) => [...att, data]));
   };
 
   const handleDelete = (e) => {
