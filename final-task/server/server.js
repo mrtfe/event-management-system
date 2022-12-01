@@ -1,10 +1,14 @@
 const express = require("express");
+const bodyParser = require("body-parser");
 
 var fs = require("fs");
 
 const app = express();
 
-const path = "/api/attendees";
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+const attendeesPath = "/api/attendees";
 
 const port = 5000;
 
@@ -22,24 +26,34 @@ function readJsonFileSync(filepath) {
   return JSON.parse(file);
 }
 
-app.get(path, (req, res) => {
+app.get(attendeesPath, (req, res) => {
   const attendees = readJsonFileSync("./attendees.json");
   res.json(attendees);
 });
 
-function appendFile(filepath) {
-  const file = fs.appendFile(filepath, "data to append", function (err) {
-    if (err) throw err;
-    console.log("Data is appended to file successfully.");
-    return file;
-  });
+const randomIdGenerator = () => {
+  return Math.floor(Math.random() * 100000);
+};
+
+function addAttendee(newAttendee) {
+  const attendees = readJsonFileSync("./attendees.json", "utf8");
+
+  attendees.push(newAttendee);
+  fs.writeFileSync("./attendees.json", JSON.stringify(attendees, null));
 }
 
-app.post(path, function (req, res) {
-  const result = req.json();
-  const postAttendees = appendFile(path, req);
-  console.log(result);
-  res.send(postAttendees);
+app.post(attendeesPath, function (req, res) {
+  console.log(req.body.firstName);
+  const newAttendee = {
+    id: randomIdGenerator(),
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    email: req.body.email,
+    age: req.body.age,
+  };
+  addAttendee(newAttendee);
+  console.log(newAttendee);
+  res.send(newAttendee);
 });
 
 app.listen(port, () => console.log(`server started on port: ${port} `));

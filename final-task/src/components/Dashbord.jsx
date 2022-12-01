@@ -3,11 +3,11 @@ import "../styles/dashbord.css";
 import styled from "styled-components";
 import { AttendeeRow } from "./AttendeeRow";
 import { EditAttendeeRow } from "./EditAttendeeRow";
+import axios from "axios";
 
 export function Dashbord() {
   const [attendees, setAttendees] = useState([]);
   const [attendee, setAttendee] = useState({
-    id: "",
     firstName: "",
     lastName: "",
     email: "",
@@ -19,10 +19,11 @@ export function Dashbord() {
   useEffect(() => {
     fetch("/api/attendees")
       .then((res) => res.json())
-      .then((data) => setAttendees(data))
-      .then(console.log(attendees))
+      .then((data) => {
+        setAttendees(data);
+      })
+
       .catch((err) => console.log("error occured"));
-    console.log(attendees);
   }, []);
 
   const randomIdGenerator = () => {
@@ -33,22 +34,18 @@ export function Dashbord() {
     const inputName = e.target.name;
     const inputData = e.target.value;
     setAttendee({ ...attendee, [inputName]: inputData });
-    console.log(attendee);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const id = randomIdGenerator();
-
-    fetch("/api/attendees", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(attendee),
-    })
-      .then((res) => {
-        res.json();
+    axios
+      .post("/api/attendees", attendee)
+      .then(function (response) {
+        setAttendees((att) => [...att, response.data]);
       })
-      .then((data) => setAttendees((att) => [...att, data]));
+      .catch(function (error) {
+        console.log(error);
+      });
   };
 
   const handleDelete = (e) => {
@@ -162,25 +159,28 @@ export function Dashbord() {
 
           <tbody>
             {attendees.length > 0 &&
-              attendees.map((item) => (
-                <>
-                  {editableId === item.id ? (
-                    <EditAttendeeRow
-                      handleEditInputChange={handleEditInputChange}
-                      item={item}
-                      editableData={editableData}
-                      handleEditSave={handleEditSave}
-                      handleEditCancel={handleEditCancel}
-                    />
-                  ) : (
-                    <AttendeeRow
-                      item={item}
-                      handleDelete={handleDelete}
-                      handleEditClick={handleEditClick}
-                    />
-                  )}
-                </>
-              ))}
+              attendees.map((item) => {
+                // console.log(item);
+                return (
+                  <>
+                    {editableId === item.id ? (
+                      <EditAttendeeRow
+                        handleEditInputChange={handleEditInputChange}
+                        item={item}
+                        editableData={editableData}
+                        handleEditSave={handleEditSave}
+                        handleEditCancel={handleEditCancel}
+                      />
+                    ) : (
+                      <AttendeeRow
+                        item={item}
+                        handleDelete={handleDelete}
+                        handleEditClick={handleEditClick}
+                      />
+                    )}
+                  </>
+                );
+              })}
           </tbody>
         </table>
       </div>
