@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../styles/dashbord.css";
 import styled from "styled-components";
 import { AttendeeRow } from "./AttendeeRow";
@@ -15,6 +15,12 @@ export function Dashbord() {
   });
   const [editableId, setEditableId] = useState(null);
   const [editableData, setEditableData] = useState(attendee);
+
+  useEffect(() => {
+    fetch("/api/attendees")
+      .then((res) => res.json())
+      .then((attendees) => console.log(attendees));
+  }, []);
 
   const randomIdGenerator = () => {
     return Math.floor(Math.random() * 100000);

@@ -5,17 +5,19 @@ export function LoginForm(props) {
   const [admins, setAdmins] = useState();
 
   useEffect(() => {
-    const fetchAdmins = async () => {
-      const load = await fetch("./data/admins.json");
-      const data = await load.json();
-      console.log(data);
-    };
+    fetch("/api/admins")
+      .then((res) => res.json())
+      .then((data) => setAdmins(data));
   }, []);
 
   const handleChange = (e) => {
     const inputName = e.target.name;
     const inputData = e.target.value;
     props.setUser({ ...props.user, [inputName]: inputData });
+  };
+
+  const checkIfAdminIsLogging = () => {
+    console.log(admins);
   };
 
   // const checkIfUser = () => {
@@ -76,7 +78,11 @@ export function LoginForm(props) {
           onChange={handleChange}
         />
         {props.error && <p>Incorrect username or password</p>}
-        <button className="login-btn" type="button" onClick={handleSubmit}>
+        <button
+          className="login-btn"
+          type="button"
+          onClick={checkIfAdminIsLogging}
+        >
           Log in
         </button>
       </form>
