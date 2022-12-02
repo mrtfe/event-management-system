@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { ToggleSwitch } from "./ToggleSwitch";
 import "../styles/loginForm.css";
 
 export function LoginForm(props) {
@@ -28,31 +29,34 @@ export function LoginForm(props) {
   };
 
   return (
-    <div className="login-container">
-      <div className="login-header">Welcome to event management system</div>
-      <div className="login">Login</div>
-      <form action="submit" className="login-form">
-        <input
-          type="text"
-          placeholder="username"
-          name="userName"
-          onChange={handleChange}
-        />
-        <input
-          type="password"
-          placeholder="password"
-          name="password"
-          onChange={handleChange}
-        />
-        {props.error && <p>Incorrect username or password</p>}
-        <button
-          className="login-btn"
-          type="button"
-          onClick={checkIfAdminIsLogging}
-        >
-          Log in
-        </button>
-      </form>
+    <div className="login-wrapper">
+      <div className="login-container">
+        <div className="login-header">Welcome to event management system</div>
+        <div className="login">Login</div>
+        <form action="submit" className="login-form">
+          <input
+            type="text"
+            placeholder="username"
+            name="userName"
+            onChange={handleChange}
+          />
+          <input
+            type="password"
+            placeholder="password"
+            name="password"
+            onChange={handleChange}
+          />
+          {props.error && <p>Incorrect username or password</p>}
+          <button
+            className="login-btn"
+            type="button"
+            onClick={checkIfAdminIsLogging}
+          >
+            Log in
+          </button>
+        </form>
+      </div>
+      <ToggleSwitch toggleTheme={props.toggleTheme} theme={props.theme} />
     </div>
   );
 }

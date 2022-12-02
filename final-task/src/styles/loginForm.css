@@ -1,3 +1,11 @@
+.login-wrapper {
+  max-width: 300px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .login-container {
   display: flex;
   flex-direction: column;
@@ -8,6 +16,7 @@
   min-width: 260;
   border-radius: 12px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 50px;
+  margin-bottom: 5px;
 }
 
 #light .login-container {

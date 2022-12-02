@@ -24,8 +24,8 @@ function App() {
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
       <div className="App" id={theme}>
-        {/* <ToggleSwitch /> */}
-        <button onClick={toggleTheme}>dark or light</button>
+        {/* <button onClick={toggleTheme}>dark or light</button> */}
+        {/* <ToggleSwitch toggleTheme={toggleTheme} /> */}
         {!loggedIn && (
           <LoginForm
             user={user}
@@ -36,6 +36,8 @@ function App() {
             setError={setError}
             adminName={adminName}
             setAdminName={setAdminName}
+            toggleTheme={toggleTheme}
+            theme={theme}
           />
         )}
 
