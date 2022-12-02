@@ -4,7 +4,7 @@ import CancelIcon from "@mui/icons-material/Cancel";
 
 export function EditAttendeeRow(props) {
   return (
-    <tr key={props.item.id}>
+    <tr>
       <td>
         <input
           type="text"

@@ -4,7 +4,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 
 export function AttendeeRow(props) {
   return (
-    <tr className="attendee-row" key={props.item.id}>
+    <tr className="attendee-row">
       <td className="attendee-col">{props.item.firstName}</td>
       <td className="attendee-col">{props.item.lastName}</td>
       <td className="attendee-col">{props.item.email}</td>
