@@ -27,7 +27,13 @@ function App() {
         />
       )}
 
-      {loggedIn && <Dashbord adminName={adminName} />}
+      {loggedIn && (
+        <Dashbord
+          adminName={adminName}
+          loggedIn={loggedIn}
+          setLoggedIn={setLoggedIn}
+        />
+      )}
       {/* <ApiTesting /> */}
     </div>
   );

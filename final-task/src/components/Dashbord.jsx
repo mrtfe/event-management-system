@@ -5,6 +5,7 @@ import { AttendeeRow } from "./AttendeeRow";
 import { EditAttendeeRow } from "./EditAttendeeRow";
 import axios from "axios";
 import PersonIcon from "@mui/icons-material/Person";
+import LogoutIcon from "@mui/icons-material/Logout";
 
 export function Dashbord(props) {
   const [attendees, setAttendees] = useState([]);
@@ -16,6 +17,7 @@ export function Dashbord(props) {
   });
   const [editableId, setEditableId] = useState(null);
   const [editableData, setEditableData] = useState(attendee);
+  const [loginIconPressed, setLoginIconPressed] = useState(false);
 
   useEffect(() => {
     fetch("/api/attendees")
@@ -93,8 +95,28 @@ export function Dashbord(props) {
   return (
     <div className="dashbord-wrapper">
       <div className="logged-user">
-        Hello, {props.adminName} <PersonIcon className="person-icon" />
+        <div className="logged-user-wrapper">
+          {" "}
+          Hello, {props.adminName}
+          <PersonIcon
+            className="person-icon"
+            onClick={() =>
+              setLoginIconPressed(
+                (prevLoginIconPressed) => !prevLoginIconPressed
+              )
+            }
+          />
+        </div>
+
+        {loginIconPressed && (
+          <div className="logout-container">
+            <button onClick={() => props.setLoggedIn(false)}>
+              <LogoutIcon />
+            </button>
+          </div>
+        )}
       </div>
+
       <div className="dashbord-header header">Management dashbord</div>
       <div className="form-container">
         <div className="form-header header">Create Attendee</div>
