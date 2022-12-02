@@ -13,7 +13,7 @@ export function LoginForm(props) {
   const handleChange = (e) => {
     const inputName = e.target.name;
     const inputData = e.target.value;
-    props.setUser({ ...props.user, [inputName]: inputData });
+    props.setUser({ ...props.user, [inputName]: inputData.toLowerCase() });
   };
 
   const checkIfAdminIsLogging = () => {

@@ -69,7 +69,7 @@ export function Dashbord(props) {
     e.preventDefault();
     const inputName = e.target.name;
     const inputData = e.target.value;
-    setEditableData({ ...attendee, [inputName]: inputData });
+    setEditableData({ ...att, [inputName]: inputData });
   };
 
   const handleEditSave = (e) => {
@@ -84,8 +84,13 @@ export function Dashbord(props) {
     const itemIndex = attendees.findIndex((item) => item.id === editableId);
     const newAttendees = [...attendees];
     newAttendees[itemIndex] = editedData;
+    console.log(editedData);
     setAttendees(newAttendees);
     setEditableId(null);
+    // axios
+    //   .put(`/api/attendees/${editedData.id}`, editedData)
+    //   .then((res) => setAttendees(res));
+    // setEditableId(null);
   };
 
   const handleEditCancel = () => {
@@ -111,6 +116,7 @@ export function Dashbord(props) {
         {loginIconPressed && (
           <div className="logout-container">
             <button onClick={() => props.setLoggedIn(false)}>
+              Log out
               <LogoutIcon />
             </button>
           </div>
@@ -184,7 +190,6 @@ export function Dashbord(props) {
           <tbody>
             {attendees.length > 0 &&
               attendees.map((item) => {
-                // console.log(item);
                 return (
                   <>
                     {editableId === item.id ? (

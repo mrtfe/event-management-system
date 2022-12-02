@@ -4,3 +4,8 @@
 body {
   margin: 0;
 }
+
+html {
+  background-color: rgb(245, 245, 245);
+  min-height: 100vh;
+}

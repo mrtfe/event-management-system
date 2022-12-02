@@ -13,11 +13,7 @@ const attendeesPath = "/api/attendees";
 const port = 5000;
 
 app.get("/api/admins", (req, res) => {
-  const admins = [
-    { id: "1", userName: "jpsk", password: "letmesee" },
-    { id: "2", userName: "eli", password: "letscheck" },
-    { id: "3", userName: "martynas", password: "welcome" },
-  ];
+  const admins = readJsonFileSync("./admins.json");
   res.json(admins);
 });
 
@@ -65,8 +61,21 @@ function removeAttendee(id) {
 
 app.delete(`${attendeesPath}/:id`, (req, res) => {
   removeAttendee(req.params.id);
-  console.log(req.params.id);
   res.send();
 });
+
+// neeed to fix edit API
+
+// function editAttendee(id) {
+//   const attendees = readJsonFileSync("./attendees.json", "utf8");
+//   const result = attendees.find((item) => item.id === id);
+//   fs.writeFileSync("./attendees.json", JSON.stringify(result, null));
+// }
+
+// app.put(`${attendeesPath}/:id`, (req, res) => {
+//   editAttendee(req.params.id);
+//   console.log(req.params.id);
+//   res.send();
+// });
 
 app.listen(port, () => console.log(`server started on port: ${port} `));

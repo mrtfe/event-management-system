@@ -2,18 +2,15 @@
   display: flex;
   flex-direction: column;
   max-width: 300px;
-  margin: 100px auto;
+  margin: 130px auto;
   padding-top: 35px;
   text-align: center;
   min-width: 260;
-  background: rgb(238, 174, 202);
-  background: radial-gradient(
-    circle,
-    rgba(238, 174, 202, 1) 0%,
-    rgba(148, 187, 233, 1) 100%
-  );
+
   border-radius: 12px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 50px;
+  background-image: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%);
+  background-blend-mode: multiply, multiply;
 }
 
 .login-header {
@@ -47,7 +44,7 @@
 }
 
 p {
-  color: rgb(142, 35, 168);
+  color: #444f69d2;
   font-size: 13px;
   font-weight: 600;
 }
@@ -56,8 +53,8 @@ p {
   margin: 10px 45px;
   padding: 10px 15px;
   color: white;
-  font-weight: 500;
-  background-color: #3b43d6;
+  font-weight: 600;
+  background-color: #444f69d2;
   border: none;
   border-radius: 5px;
   cursor: pointer;

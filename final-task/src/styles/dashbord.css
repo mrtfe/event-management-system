@@ -4,18 +4,14 @@
   flex-direction: column;
   margin: 0 auto;
   min-width: 260px;
-  background-color: #e5e5f7;
   opacity: 0.8;
-  background-image: radial-gradient(hsl(237, 92%, 62%) 0.5px, #e5e5f7 0.5px);
-  background-size: 10px 10px;
-  margin: 0;
+  margin: 0 auto;
   min-height: 150vh;
 }
 
 .logged-user {
   display: flex;
   flex-direction: column;
-  /* justify-content: flex-end; */
   margin: 30px;
   font-weight: 600;
   align-items: flex-end;
@@ -30,21 +26,25 @@
 .logout-container {
   display: flex;
   justify-content: flex-end;
-  padding: 50px 5px 5px 35px;
+  padding: 40px 5px 5px 35px;
   max-width: 80px;
-  background-color: #0998e0c2;
-  /* border-radius: 10% 30% 50% 70%; */
+  background-color: #0998e03f;
   border-radius: 70% 10% 30% 50%;
 }
 
 .logout-container button {
   margin-bottom: 5px;
-  margin-right: 5px;
-  width: 80%;
+  margin-right: 7px;
+  width: 100%;
   border: none;
   border-radius: 5px;
   background-color: #3b43d6;
-  color: rgb(177, 172, 172);
+  color: white;
+  display: flex;
+  gap: 3px;
+  align-items: center;
+  white-space: nowrap;
+  cursor: pointer;
 }
 
 .header {
