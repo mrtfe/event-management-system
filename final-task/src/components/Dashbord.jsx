@@ -6,6 +6,7 @@ import { EditAttendeeRow } from "./EditAttendeeRow";
 import axios from "axios";
 import PersonIcon from "@mui/icons-material/Person";
 import LogoutIcon from "@mui/icons-material/Logout";
+import { ToggleSwitch } from "./ToggleSwitch";
 
 export function Dashbord(props) {
   const initialValues = {
@@ -108,28 +109,30 @@ export function Dashbord(props) {
 
   return (
     <div className="dashbord-wrapper">
-      <div className="logged-user">
-        <div className="logged-user-wrapper">
-          {" "}
-          Hello, {props.adminName}
-          <PersonIcon
-            className="person-icon"
-            onClick={() =>
-              setLoginIconPressed(
-                (prevLoginIconPressed) => !prevLoginIconPressed
-              )
-            }
-          />
-        </div>
-
-        {loginIconPressed && (
-          <div className="logout-container">
-            <button onClick={() => props.setLoggedIn(false)}>
-              Log out
-              <LogoutIcon />
-            </button>
+      <div className="dashbord-header">
+        <ToggleSwitch toggleTheme={props.toggleTheme} theme={props.theme} />
+        <div className="logged-user">
+          <div className="logged-user-wrapper">
+            Hello, {props.adminName}
+            <PersonIcon
+              className="person-icon"
+              onClick={() =>
+                setLoginIconPressed(
+                  (prevLoginIconPressed) => !prevLoginIconPressed
+                )
+              }
+            />
           </div>
-        )}
+
+          {loginIconPressed && (
+            <div className="logout-container">
+              <button onClick={() => props.setLoggedIn(false)}>
+                Log out
+                <LogoutIcon />
+              </button>
+            </div>
+          )}
+        </div>
       </div>
 
       <div className="dashbord-header header">Management dashbord</div>

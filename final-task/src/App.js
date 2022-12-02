@@ -3,7 +3,6 @@ import { LoginForm } from "./components/LoginForm";
 import { Dashbord } from "./components/Dashbord";
 import { useState } from "react";
 import { createContext } from "react";
-import { ToggleSwitch } from "./components/ToggleSwitch";
 
 export const ThemeContext = createContext(null);
 
@@ -12,7 +11,7 @@ function App() {
     userName: "",
     password: "",
   });
-  const [loggedIn, setLoggedIn] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(false);
   const [error, setError] = useState(false);
   const [adminName, setAdminName] = useState("");
   const [theme, setTheme] = useState("light");
@@ -24,8 +23,6 @@ function App() {
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
       <div className="App" id={theme}>
-        {/* <button onClick={toggleTheme}>dark or light</button> */}
-        {/* <ToggleSwitch toggleTheme={toggleTheme} /> */}
         {!loggedIn && (
           <LoginForm
             user={user}
@@ -46,6 +43,8 @@ function App() {
             adminName={adminName}
             loggedIn={loggedIn}
             setLoggedIn={setLoggedIn}
+            toggleTheme={toggleTheme}
+            theme={theme}
           />
         )}
       </div>
