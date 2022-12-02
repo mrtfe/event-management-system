@@ -1,11 +1,15 @@
 .App {
   font-family: sans-serif;
+  min-height: 100vh;
 }
 body {
   margin: 0;
 }
 
-html {
+#light {
   background-color: rgb(245, 245, 245);
-  min-height: 100vh;
+}
+
+#dark {
+  background-color: rgb(65, 64, 64);
 }
