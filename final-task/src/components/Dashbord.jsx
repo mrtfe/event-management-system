@@ -4,8 +4,9 @@ import styled from "styled-components";
 import { AttendeeRow } from "./AttendeeRow";
 import { EditAttendeeRow } from "./EditAttendeeRow";
 import axios from "axios";
+import PersonIcon from "@mui/icons-material/Person";
 
-export function Dashbord() {
+export function Dashbord(props) {
   const [attendees, setAttendees] = useState([]);
   const [attendee, setAttendee] = useState({
     firstName: "",
@@ -25,10 +26,6 @@ export function Dashbord() {
 
       .catch((err) => console.log("error occured"));
   }, []);
-
-  const randomIdGenerator = () => {
-    return Math.floor(Math.random() * 100000);
-  };
 
   const handleInputChange = (e) => {
     const inputName = e.target.name;
@@ -95,6 +92,9 @@ export function Dashbord() {
 
   return (
     <div className="dashbord-wrapper">
+      <div className="logged-user">
+        Hello, {props.adminName} <PersonIcon className="person-icon" />
+      </div>
       <div className="dashbord-header header">Management dashbord</div>
       <div className="form-container">
         <div className="form-header header">Create Attendee</div>

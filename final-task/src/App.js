@@ -9,9 +9,9 @@ function App() {
     userName: "",
     password: "",
   });
-  const [loggedIn, setLoggedIn] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(false);
   const [error, setError] = useState(false);
-
+  const [adminName, setAdminName] = useState("");
   return (
     <div className="App">
       {!loggedIn && (
@@ -22,10 +22,12 @@ function App() {
           setLoggedIn={setLoggedIn}
           error={error}
           setError={setError}
+          adminName={adminName}
+          setAdminName={setAdminName}
         />
       )}
 
-      {loggedIn && <Dashbord />}
+      {loggedIn && <Dashbord adminName={adminName} />}
       {/* <ApiTesting /> */}
     </div>
   );

@@ -23,6 +23,7 @@ export function LoginForm(props) {
     if (index >= 0 && admins[index].password === props.user.password) {
       props.setLoggedIn(true);
       props.setError(false);
+      props.setAdminName(admins[index].userName);
     } else props.setError(true);
   };
 
