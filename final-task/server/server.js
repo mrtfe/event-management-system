@@ -64,34 +64,30 @@ app.delete(`${attendeesPath}/:id`, (req, res) => {
   res.send();
 });
 
-// neeed to fix edit API
-
-function editAttendee(id, firstName, lastName, email, age) {
+function editAttendee(editedAttende) {
   const attendees = readJsonFileSync("./attendees.json", "utf8");
-  const editedAttende = {
-    id: id,
-    firstName: firstName,
-    lastName: lastName,
-    email: email,
-    age: age,
-  };
+
   console.log(attendees);
   const newAttendeesArray = attendees.map((attendee) =>
-    attendee.id === id ? editedAttende : attendee
+    attendee.id === editedAttende.id ? editedAttende : attendee
   );
+  console.log(newAttendeesArray);
+
   fs.writeFileSync("./attendees.json", JSON.stringify(newAttendeesArray));
 }
 
 app.put(`${attendeesPath}/:id`, (req, res) => {
-  editAttendee(
-    req.params.id,
-    req.body.firstName,
-    req.body.lastName,
-    req.body.email,
-    req.body.age
-  );
+  const editedAttende = {
+    id: parseInt(req.params.id),
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    email: req.body.email,
+    age: req.body.age,
+  };
+  editAttendee(editedAttende);
+
   console.log(req.params.id);
-  res.send();
+  res.send(editedAttende);
 });
 
 app.listen(port, () => console.log(`server started on port: ${port} `));

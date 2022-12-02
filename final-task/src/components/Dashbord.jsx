@@ -8,13 +8,14 @@ import PersonIcon from "@mui/icons-material/Person";
 import LogoutIcon from "@mui/icons-material/Logout";
 
 export function Dashbord(props) {
-  const [attendees, setAttendees] = useState([]);
-  const [attendee, setAttendee] = useState({
+  const initialValues = {
     firstName: "",
     lastName: "",
     email: "",
     age: "",
-  });
+  };
+  const [attendees, setAttendees] = useState([]);
+  const [attendee, setAttendee] = useState(initialValues);
   const [editableId, setEditableId] = useState(null);
   const [editableData, setEditableData] = useState(attendee);
   const [loginIconPressed, setLoginIconPressed] = useState(false);
@@ -45,6 +46,8 @@ export function Dashbord(props) {
       .catch(function (error) {
         console.log(error);
       });
+
+    setAttendee(initialValues);
   };
 
   const handleDelete = (e) => {
@@ -69,7 +72,7 @@ export function Dashbord(props) {
     e.preventDefault();
     const inputName = e.target.name;
     const inputData = e.target.value;
-    setEditableData({ ...att, [inputName]: inputData });
+    setEditableData((att) => ({ ...att, [inputName]: inputData }));
   };
 
   const handleEditSave = (e) => {
@@ -85,12 +88,18 @@ export function Dashbord(props) {
     const newAttendees = [...attendees];
     newAttendees[itemIndex] = editedData;
     console.log(editedData);
-    setAttendees(newAttendees);
     setEditableId(null);
-    // axios
-    //   .put(`/api/attendees/${editedData.id}`, editedData)
-    //   .then((res) => setAttendees(res));
-    // setEditableId(null);
+
+    axios
+      .put(`/api/attendees/${editedData.id}`, editedData)
+      .then((res) =>
+        setAttendees((att) =>
+          attendees.map((attendee) =>
+            attendee.id === res.data.id ? res.data : attendee
+          )
+        )
+      );
+    setEditableId(null);
   };
 
   const handleEditCancel = () => {
@@ -190,24 +199,22 @@ export function Dashbord(props) {
           <tbody>
             {attendees.length > 0 &&
               attendees.map((item) => {
-                return (
-                  <>
-                    {editableId === item.id ? (
-                      <EditAttendeeRow
-                        handleEditInputChange={handleEditInputChange}
-                        item={item}
-                        editableData={editableData}
-                        handleEditSave={handleEditSave}
-                        handleEditCancel={handleEditCancel}
-                      />
-                    ) : (
-                      <AttendeeRow
-                        item={item}
-                        handleDelete={handleDelete}
-                        handleEditClick={handleEditClick}
-                      />
-                    )}
-                  </>
+                return editableId === item.id ? (
+                  <EditAttendeeRow
+                    key={item.id}
+                    handleEditInputChange={handleEditInputChange}
+                    item={item}
+                    editableData={editableData}
+                    handleEditSave={handleEditSave}
+                    handleEditCancel={handleEditCancel}
+                  />
+                ) : (
+                  <AttendeeRow
+                    key={item.id}
+                    item={item}
+                    handleDelete={handleDelete}
+                    handleEditClick={handleEditClick}
+                  />
                 );
               })}
           </tbody>
