@@ -208,7 +208,7 @@ tr {
   margin: 30px 0;
 }
 
-@media (460px <= width <= 815px) {
+@media (490px <= width <= 815px) {
   .form-container form {
     display: grid;
     justify-content: normal;
@@ -227,7 +227,7 @@ tr {
   }
 }
 
-@media (width <= 460px) {
+@media (width <= 490px) {
   .form-container form {
     display: flex;
     flex-direction: column;
@@ -247,7 +247,7 @@ tr {
   }
 }
 
-@media (width <= 370px) {
+@media (width <= 400px) {
   .attendee-col {
     font-size: 12px;
   }
