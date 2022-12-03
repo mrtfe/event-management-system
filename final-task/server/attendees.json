@@ -1,1 +1,23 @@
-[{"id":95519,"firstName":"Martynas","lastName":"Fetingis","email":"martynas.f@gmail.com","age":"22"}]
+[
+  {
+    "id": 1215,
+    "firstName": "Dan",
+    "lastName": "Abramov ",
+    "email": "dan@javascript.com",
+    "age": "30"
+  },
+  {
+    "id": 7733,
+    "firstName": "Jonas",
+    "lastName": "Valanciunas",
+    "email": "jv@nba.com",
+    "age": "30"
+  },
+  {
+    "id": 15120,
+    "firstName": "Rokas",
+    "lastName": "Jokubaitis",
+    "email": "rokas@euroleague.net",
+    "age": "22"
+  }
+]

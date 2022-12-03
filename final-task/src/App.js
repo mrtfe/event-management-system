@@ -8,10 +8,11 @@ import { SignUp } from "./components/SignUp";
 export const ThemeContext = createContext(null);
 
 function App() {
-  const [user, setUser] = useState({
+  const initialUserState = useState({
     userName: "",
     password: "",
   });
+  const [user, setUser] = useState(initialUserState);
   const [loggedIn, setLoggedIn] = useState(false);
   const [error, setError] = useState(false);
   const [adminName, setAdminName] = useState("");
@@ -38,6 +39,7 @@ function App() {
             toggleTheme={toggleTheme}
             theme={theme}
             setLoadSignUp={setLoadSignUp}
+            initialUserState={initialUserState}
           />
         )}
         {loadSignUp && (

@@ -1,15 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
 import { ToggleSwitch } from "./ToggleSwitch";
 import "../styles/loginForm.css";
+import { useAdmins } from "./hooks";
 
 export function LoginForm(props) {
-  const [admins, setAdmins] = useState();
-
-  useEffect(() => {
-    fetch("/api/admins")
-      .then((res) => res.json())
-      .then((data) => setAdmins(data));
-  }, []);
+  const admins = useAdmins();
 
   const handleChange = (e) => {
     const inputName = e.target.name;

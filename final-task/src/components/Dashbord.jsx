@@ -15,6 +15,7 @@ export function Dashbord(props) {
     email: "",
     age: "",
   };
+
   const [attendees, setAttendees] = useState([]);
   const [attendee, setAttendee] = useState(initialValues);
   const [editableId, setEditableId] = useState(null);
@@ -47,7 +48,6 @@ export function Dashbord(props) {
       .catch(function (error) {
         console.log(error);
       });
-
     setAttendee(initialValues);
   };
 
@@ -88,7 +88,6 @@ export function Dashbord(props) {
     const itemIndex = attendees.findIndex((item) => item.id === editableId);
     const newAttendees = [...attendees];
     newAttendees[itemIndex] = editedData;
-    console.log(editedData);
     setEditableId(null);
 
     axios
@@ -123,10 +122,14 @@ export function Dashbord(props) {
               }
             />
           </div>
-
           {loginIconPressed && (
             <div className="logout-container">
-              <button onClick={() => props.setLoggedIn(false)}>
+              <button
+                onClick={() => {
+                  props.setLoggedIn(false);
+                  props.setUser(props.initialUserState);
+                }}
+              >
                 Log out
                 <LogoutIcon />
               </button>
@@ -134,7 +137,6 @@ export function Dashbord(props) {
           )}
         </div>
       </div>
-
       <div className="dashbord-header header">Management dashbord</div>
       <div className="form-container">
         <div className="form-header header">Create Attendee</div>
@@ -198,7 +200,6 @@ export function Dashbord(props) {
               </tr>
             </thead>
           )}
-
           <tbody>
             {attendees.length > 0 &&
               attendees.map((item) => {

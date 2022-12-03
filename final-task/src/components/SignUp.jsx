@@ -19,7 +19,11 @@ export const SignUp = (props) => {
   };
 
   const submitSignUp = (e) => {
-    if (newAdmin.userName !== "" && newAdmin.password === newAdmin.password2) {
+    if (
+      newAdmin.userName !== "" &&
+      newAdmin.password !== "" &&
+      newAdmin.password === newAdmin.password2
+    ) {
       const createdAdmin = {
         userName: newAdmin.userName,
         password: newAdmin.password,
@@ -33,29 +37,33 @@ export const SignUp = (props) => {
       setError(true);
     }
   };
+
   return (
     <div className="login-wrapper">
       <div className="login-container">
         <div className="login-header">Sign up</div>
         <form action="submit" className="login-form">
           <input
-            min={3}
+            required={true}
+            minLength={3}
             type="text"
             placeholder="username"
             name="userName"
             onChange={handleChange}
           />
           <input
-            min={8}
+            required={true}
+            minLength={8}
             type="password"
             placeholder="password"
             name="password"
             onChange={handleChange}
           />
           <input
-            min={8}
+            required={true}
+            minLength={8}
             type="password"
-            placeholder="password"
+            placeholder="confirm password"
             name="password2"
             onChange={handleChange}
           />
