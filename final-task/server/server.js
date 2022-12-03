@@ -9,6 +9,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 const attendeesPath = "/api/attendees";
+const adminsPath = "/api/admins";
 
 const port = 5000;
 
@@ -33,7 +34,6 @@ const randomIdGenerator = () => {
 
 function addAttendee(newAttendee) {
   const attendees = readJsonFileSync("./attendees.json", "utf8");
-
   attendees.push(newAttendee);
   fs.writeFileSync("./attendees.json", JSON.stringify(attendees, null));
 }
@@ -50,6 +50,22 @@ app.post(attendeesPath, function (req, res) {
   addAttendee(newAttendee);
   console.log(newAttendee);
   res.send(newAttendee);
+});
+
+function addAdmin(newAdmin) {
+  const admins = readJsonFileSync("./admins.json", "utf8");
+  admins.push(newAdmin);
+  fs.writeFileSync("./admins.json", JSON.stringify(admins, null));
+}
+
+app.post(adminsPath, function (req, res) {
+  const newUser = {
+    id: randomIdGenerator(),
+    userName: req.body.userName,
+    password: req.body.password,
+  };
+  addAdmin(newUser);
+  res.send("new admin registered");
 });
 
 function removeAttendee(id) {

@@ -3,6 +3,7 @@ import { LoginForm } from "./components/LoginForm";
 import { Dashbord } from "./components/Dashbord";
 import { useState } from "react";
 import { createContext } from "react";
+import { SignUp } from "./components/SignUp";
 
 export const ThemeContext = createContext(null);
 
@@ -15,6 +16,7 @@ function App() {
   const [error, setError] = useState(false);
   const [adminName, setAdminName] = useState("");
   const [theme, setTheme] = useState("light");
+  const [loadSignUp, setLoadSignUp] = useState(true);
 
   const toggleTheme = () => {
     setTheme((curr) => (curr === "light" ? "dark" : "light"));
@@ -37,7 +39,14 @@ function App() {
             theme={theme}
           />
         )}
-
+        {loadSignUp && (
+          <SignUp
+            setUser={setUser}
+            setLoadSignUp={setLoadSignUp}
+            toggleTheme={toggleTheme}
+            theme={theme}
+          />
+        )}
         {loggedIn && (
           <Dashbord
             adminName={adminName}
