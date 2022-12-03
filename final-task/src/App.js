@@ -16,7 +16,7 @@ function App() {
   const [error, setError] = useState(false);
   const [adminName, setAdminName] = useState("");
   const [theme, setTheme] = useState("light");
-  const [loadSignUp, setLoadSignUp] = useState(true);
+  const [loadSignUp, setLoadSignUp] = useState(false);
 
   const toggleTheme = () => {
     setTheme((curr) => (curr === "light" ? "dark" : "light"));
@@ -25,7 +25,7 @@ function App() {
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
       <div className="App" id={theme}>
-        {!loggedIn && (
+        {!loggedIn && !loadSignUp && (
           <LoginForm
             user={user}
             setUser={setUser}
@@ -37,6 +37,7 @@ function App() {
             setAdminName={setAdminName}
             toggleTheme={toggleTheme}
             theme={theme}
+            setLoadSignUp={setLoadSignUp}
           />
         )}
         {loadSignUp && (

@@ -64,6 +64,9 @@ export const SignUp = (props) => {
           <button className="login-btn" type="button" onClick={submitSignUp}>
             Sign up
           </button>
+          <div className="signup-suggest">
+            Go back to <u onClick={() => props.setLoadSignUp(false)}>login</u>
+          </div>
         </form>
       </div>
       <ToggleSwitch toggleTheme={props.toggleTheme} theme={props.theme} />

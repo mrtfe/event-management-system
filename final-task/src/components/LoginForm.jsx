@@ -54,6 +54,10 @@ export function LoginForm(props) {
           >
             Log in
           </button>
+          <div className="signup-suggest">
+            Do not have an account?{" "}
+            <u onClick={() => props.setLoadSignUp(true)}>Sign Up</u>
+          </div>
         </form>
       </div>
       <ToggleSwitch toggleTheme={props.toggleTheme} theme={props.theme} />

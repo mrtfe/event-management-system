@@ -104,3 +104,12 @@ p {
 #dark .login-btn:hover {
   background-color: rgb(196, 196, 196);
 }
+
+.signup-suggest {
+  margin-top: 10px;
+  font-weight: 600;
+}
+
+#dark .signup-suggest {
+  color: rgb(196, 196, 196);
+}
