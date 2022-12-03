@@ -84,9 +84,23 @@ p {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  box-shadow: 0 3px #999;
+}
+
+.login-btn:hover {
+  background-color: #444f69f5;
+}
+
+.login-btn:active {
+  background-color: #444f69f5;
+  box-shadow: 0 1px #666;
+  transform: translateY(4px);
 }
 
 #dark .login-btn {
   background-color: rgb(245, 245, 245);
   color: rgb(58, 57, 57);
+}
+#dark .login-btn:hover {
+  background-color: rgb(196, 196, 196);
 }

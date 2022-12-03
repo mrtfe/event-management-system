@@ -32,6 +32,14 @@
   color: rgb(245, 245, 245);
 }
 
+.person-icon:hover {
+  color: rgb(65, 64, 64);
+  cursor: pointer;
+}
+#dark .person-icon:hover {
+  color: rgb(206, 206, 206);
+}
+
 .logout-container {
   margin-top: 7px;
   display: flex;
@@ -61,10 +69,18 @@
   cursor: pointer;
 }
 
+.logout-container button:hover {
+  font-weight: 700;
+}
+
 #dark .logout-container button {
   background-color: rgb(245, 245, 245);
   color: rgb(65, 64, 64);
-  font-weight: 600;
+  font-weight: 500;
+}
+
+#dark .logout-container button:hover {
+  font-weight: 700;
 }
 
 .header {
@@ -117,9 +133,23 @@
   cursor: pointer;
 }
 
+.submit-btn:hover {
+  background-color: #444f69f5;
+}
+
+.submit-btn:active {
+  background-color: #444f69f5;
+  box-shadow: 0 1px #666;
+  transform: translateY(4px);
+}
+
 #dark .submit-btn {
   background-color: rgb(245, 245, 245);
   color: rgb(65, 64, 64);
+}
+
+#dark .submit-btn:hover {
+  background-color: rgb(218, 214, 214);
 }
 
 .attendees-container {
