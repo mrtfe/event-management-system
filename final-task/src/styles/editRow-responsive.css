@@ -1,0 +1,67 @@
+@media (width <= 850px) {
+  .edit-tr input {
+    max-width: 80%;
+  }
+  .edit-tr td {
+    padding: 1px;
+  }
+  .edit-tr td:nth-child(4) {
+    max-width: 80px;
+  }
+}
+
+@media (width <= 700px) {
+  .edit-tr td {
+    max-width: 150px;
+  }
+}
+@media (width <= 620px) {
+  .edit-tr td {
+    max-width: 100px;
+  }
+}
+
+@media (width <= 505px) {
+  .edit-tr td {
+    max-width: 80px;
+  }
+  .edit-tr input {
+    max-width: 92%;
+  }
+}
+
+@media (width <= 460px) {
+  .edit-tr td:nth-child(4) {
+    max-width: 30px;
+    padding-right: 10px;
+  }
+}
+
+@media (width <= 400px) {
+  .edit-tr td:nth-child(1) + td:nth-child(2) {
+    max-width: 50px;
+    padding-right: 3px;
+  }
+}
+@media (width <= 350px) {
+  .edit-tr td:nth-child(4) {
+    max-width: 18px;
+  }
+}
+
+@media (width <= 335px) {
+  .attendees-container {
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+}
+
+@media (width <= 320px) {
+  .btn {
+    max-width: 34px;
+  }
+  .edit-tr td:nth-child(1) {
+    max-width: 35px;
+    padding-right: 3px;
+  }
+}

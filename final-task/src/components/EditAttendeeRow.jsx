@@ -1,10 +1,12 @@
 import React from "react";
 import CheckIcon from "@mui/icons-material/Check";
 import CancelIcon from "@mui/icons-material/Cancel";
+import "../styles/dashbord.css";
+import "../styles/editRow-responsive.css";
 
 export function EditAttendeeRow(props) {
   return (
-    <tr>
+    <tr className="edit-tr">
       <td>
         <input
           type="text"

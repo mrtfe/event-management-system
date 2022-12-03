@@ -137,6 +137,7 @@
 table {
   border-collapse: collapse;
   width: 100%;
+  overflow-x: auto;
 }
 
 th,

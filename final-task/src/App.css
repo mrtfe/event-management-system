@@ -1,6 +1,7 @@
 .App {
   font-family: sans-serif;
   min-height: 130vh;
+  min-width: 300px;
 }
 body {
   margin: 0;
