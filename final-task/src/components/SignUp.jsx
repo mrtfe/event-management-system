@@ -10,15 +10,35 @@ export const SignUp = (props) => {
   });
   const [error, setError] = useState(false);
   const [success, setSucces] = useState(false);
+  const [userNameTooShort, setUserNameTooShort] = useState(false);
+  const [passwordTooShort, setPasswordTooShort] = useState(false);
 
   const handleChange = (e) => {
     const inputName = e.target.name;
     const inputData = e.target.value;
     setNewAdmin({ ...newAdmin, [inputName]: inputData.toLowerCase() });
-    console.log(newAdmin);
   };
 
-  const submitSignUp = (e) => {
+  const userNameValidation = () => {
+    const userNameLength = newAdmin.userName.length;
+    if (userNameLength < 3) {
+      setUserNameTooShort(true);
+    } else {
+      setUserNameTooShort(false);
+      passwordValidation();
+    }
+  };
+  const passwordValidation = () => {
+    const passwordLength = newAdmin.password.length;
+    if (passwordLength < 8) {
+      setPasswordTooShort(true);
+    } else {
+      setPasswordTooShort(false);
+      submitSignUp();
+    }
+  };
+
+  const submitSignUp = () => {
     if (
       newAdmin.userName !== "" &&
       newAdmin.password !== "" &&
@@ -67,9 +87,15 @@ export const SignUp = (props) => {
             name="password2"
             onChange={handleChange}
           />
+          {userNameTooShort && <p>Username must be at least 3 characters</p>}
+          {passwordTooShort && <p>Password must be at least 8 characters</p>}
           {error && <p>Passwords did not match</p>}
           {success && <p>Account created, now you can login</p>}
-          <button className="login-btn" type="button" onClick={submitSignUp}>
+          <button
+            className="login-btn"
+            type="button"
+            onClick={userNameValidation}
+          >
             Sign up
           </button>
           <div className="signup-suggest">
@@ -77,6 +103,7 @@ export const SignUp = (props) => {
           </div>
         </form>
       </div>
+      <button onClick={userNameValidation}>test</button>
       <ToggleSwitch toggleTheme={props.toggleTheme} theme={props.theme} />
     </div>
   );
