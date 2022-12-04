@@ -46,7 +46,7 @@ export function Dashbord(props) {
         setAttendees((att) => [...att, response.data]);
       })
       .catch(function (error) {
-        console.log(error);
+        console.log("error occured: " + error.name);
       });
     setAttendee(initialValues);
   };
@@ -54,7 +54,10 @@ export function Dashbord(props) {
   const handleDelete = (e) => {
     axios
       .delete(`/api/attendees/${e.id}`)
-      .then(setAttendees(attendees.filter((item) => item.id !== e.id)));
+      .then(setAttendees(attendees.filter((item) => item.id !== e.id)))
+      .catch(function (error) {
+        console.log("error occured: " + error.name);
+      });
   };
 
   const handleEditClick = (e, item) => {
@@ -98,7 +101,10 @@ export function Dashbord(props) {
             attendee.id === res.data.id ? res.data : attendee
           )
         )
-      );
+      )
+      .catch(function (error) {
+        console.log("error occured: " + error.name);
+      });
     setEditableId(null);
   };
 

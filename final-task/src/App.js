@@ -57,6 +57,8 @@ function App() {
             setLoggedIn={setLoggedIn}
             toggleTheme={toggleTheme}
             theme={theme}
+            initialUserState={initialUserState}
+            setUser={setUser}
           />
         )}
       </div>
