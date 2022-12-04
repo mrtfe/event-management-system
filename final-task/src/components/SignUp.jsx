@@ -1,8 +1,10 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { ToggleSwitch } from "./ToggleSwitch";
+import { useAdmins } from "./hooks";
 
 export const SignUp = (props) => {
+  const admins = useAdmins();
   const [newAdmin, setNewAdmin] = useState({
     userName: "",
     password: "",
@@ -12,11 +14,27 @@ export const SignUp = (props) => {
   const [success, setSucces] = useState(false);
   const [userNameTooShort, setUserNameTooShort] = useState(false);
   const [passwordTooShort, setPasswordTooShort] = useState(false);
+  const [userNameTaken, setUserNameTaken] = useState(false);
 
   const handleChange = (e) => {
     const inputName = e.target.name;
     const inputData = e.target.value;
     setNewAdmin({ ...newAdmin, [inputName]: inputData.toLowerCase() });
+  };
+
+  const freeUsernameValidation = () => {
+    const userNamesFree = admins.map(
+      (admin) => admin.userName === newAdmin.userName
+    );
+    const result = userNamesFree.filter((item) => item === true);
+    if (result.length > 0) {
+      setUserNameTaken(true);
+      setUserNameTooShort(false);
+    } else {
+      setUserNameTooShort(false);
+      setUserNameTaken(false);
+      userNameValidation();
+    }
   };
 
   const userNameValidation = () => {
@@ -90,11 +108,12 @@ export const SignUp = (props) => {
           {userNameTooShort && <p>Username must be at least 3 characters</p>}
           {passwordTooShort && <p>Password must be at least 8 characters</p>}
           {error && <p>Passwords did not match</p>}
+          {userNameTaken && <p>This username already exists</p>}
           {success && <p>Account created, now you can login</p>}
           <button
             className="login-btn"
             type="button"
-            onClick={userNameValidation}
+            onClick={freeUsernameValidation}
           >
             Sign up
           </button>
@@ -103,7 +122,6 @@ export const SignUp = (props) => {
           </div>
         </form>
       </div>
-      <button onClick={userNameValidation}>test</button>
       <ToggleSwitch toggleTheme={props.toggleTheme} theme={props.theme} />
     </div>
   );
