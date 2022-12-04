@@ -118,7 +118,13 @@ export const SignUp = (props) => {
             Sign up
           </button>
           <div className="signup-suggest">
-            Go back to <u onClick={() => props.setLoadSignUp(false)}>login</u>
+            Go back to{" "}
+            <u
+              onClick={() => props.setLoadSignUp(false)}
+              style={{ cursor: "pointer" }}
+            >
+              login
+            </u>
           </div>
         </form>
       </div>

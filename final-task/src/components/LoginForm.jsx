@@ -50,7 +50,12 @@ export function LoginForm(props) {
           </button>
           <div className="signup-suggest">
             Do not have an account?{" "}
-            <u onClick={() => props.setLoadSignUp(true)}>Sign Up</u>
+            <u
+              onClick={() => props.setLoadSignUp(true)}
+              style={{ cursor: "pointer" }}
+            >
+              Sign Up
+            </u>
           </div>
         </form>
       </div>
