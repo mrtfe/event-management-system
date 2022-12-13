@@ -1,8 +1,7 @@
 import "./App.css";
 import { LoginForm } from "./components/LoginForm";
 import { Dashbord } from "./components/Dashbord";
-import { useState } from "react";
-import { createContext } from "react";
+import { useState, createContext } from "react";
 import { SignUp } from "./components/SignUp";
 
 export const ThemeContext = createContext(null);
