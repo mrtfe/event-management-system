@@ -7,6 +7,7 @@ import axios from "axios";
 import PersonIcon from "@mui/icons-material/Person";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { ToggleSwitch } from "./ToggleSwitch";
+import { DashbordForm } from "./DashbordForm";
 
 export function Dashbord(props) {
   const initialValues = {
@@ -144,51 +145,11 @@ export function Dashbord(props) {
         </div>
       </div>
       <div className="dashbord-header header">Management dashbord</div>
-      <div className="form-container">
-        <div className="form-header header">Create Attendee</div>
-        <form action="submit" onSubmit={handleSubmit}>
-          <input
-            type="text"
-            maxLength="20"
-            placeholder="First name"
-            required
-            name="firstName"
-            value={attendee.firstName}
-            onChange={handleInputChange}
-          />
-          <input
-            type="text"
-            maxLength="20"
-            placeholder="Last name"
-            required
-            name="lastName"
-            value={attendee.lastName}
-            onChange={handleInputChange}
-          />
-          <input
-            type="email"
-            maxLength="47"
-            placeholder="Email"
-            required
-            name="email"
-            value={attendee.email}
-            onChange={handleInputChange}
-          />
-          <input
-            type="number"
-            min="18"
-            max="120"
-            placeholder="Age"
-            required
-            name="age"
-            value={attendee.age}
-            onChange={handleInputChange}
-          />
-          <button type="submit" className="submit-btn">
-            Submit
-          </button>
-        </form>
-      </div>
+      <DashbordForm
+        handleSubmit={handleSubmit}
+        handleInputChange={handleInputChange}
+        attendee={attendee}
+      />
       <div className="attendees-container">
         <div className="attendees-header header">Attendee list</div>
         {attendees.length === 0 && (
