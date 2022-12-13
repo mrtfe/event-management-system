@@ -23,6 +23,6 @@ Installation
    npm start
 
 Contact
-Martynas Fetingis - @twitter_handle - martynas.f@gmail.com
+Martynas Fetingis - martynas.f@gmail.com
 
 Project Link: https://github.com/mrtfe/event-management-system
