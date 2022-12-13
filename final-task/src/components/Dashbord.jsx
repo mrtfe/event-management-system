@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "../styles/dashbord.css";
-import styled from "styled-components";
-import { AttendeeRow } from "./AttendeeRow";
-import { EditAttendeeRow } from "./EditAttendeeRow";
 import axios from "axios";
 import { DashbordForm } from "./DashbordForm";
 import { DashbordHeader } from "./DashbordHeader";
+import { AttendeesContainer } from "./AttendeesContainer";
 
 export function Dashbord(props) {
   const initialValues = {
@@ -127,53 +125,16 @@ export function Dashbord(props) {
         handleInputChange={handleInputChange}
         attendee={attendee}
       />
-      <div className="attendees-container">
-        <div className="attendees-header header">Attendee list</div>
-        {attendees.length === 0 && (
-          <StyledP>No attendees registered yet...</StyledP>
-        )}
-        <table className="attendees-list">
-          {attendees.length > 0 && (
-            <thead className="header-row">
-              <tr>
-                <th>First name</th>
-                <th>Last name</th>
-                <th>Email</th>
-                <th>Age</th>
-                <th></th>
-              </tr>
-            </thead>
-          )}
-          <tbody>
-            {attendees.length > 0 &&
-              attendees.map((item) => {
-                return editableId === item.id ? (
-                  <EditAttendeeRow
-                    key={item.id}
-                    handleEditInputChange={handleEditInputChange}
-                    item={item}
-                    editableData={editableData}
-                    handleEditSave={handleEditSave}
-                    handleEditCancel={handleEditCancel}
-                  />
-                ) : (
-                  <AttendeeRow
-                    key={item.id}
-                    item={item}
-                    handleDelete={handleDelete}
-                    handleEditClick={handleEditClick}
-                  />
-                );
-              })}
-          </tbody>
-        </table>
-      </div>
+      <AttendeesContainer
+        attendees={attendees}
+        editableId={editableId}
+        handleEditInputChange={handleEditInputChange}
+        editableData={editableData}
+        handleEditSave={handleEditSave}
+        handleEditCancel={handleEditCancel}
+        handleDelete={handleDelete}
+        handleEditClick={handleEditClick}
+      />
     </div>
   );
 }
-
-const StyledP = styled.p`
-  color: rgba(128, 128, 128, 0.877);
-  font-size: 18px;
-  margin-top: 15px;
-`;
