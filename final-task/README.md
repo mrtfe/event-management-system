@@ -19,10 +19,11 @@ Installation
    Change directory to ...final-task>server>
    nodemon
 
-4. Change directory back to ...final task>
+4. Change directory back to ...final-task>
    npm start
 
 Contact
 Martynas Fetingis - martynas.f@gmail.com
+LinkedIn - www.linkedin.com/in/martynas-fetingis-351820236
 
 Project Link: https://github.com/mrtfe/event-management-system
