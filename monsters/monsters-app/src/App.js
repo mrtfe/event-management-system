@@ -5,6 +5,7 @@ import axios from "axios";
 function App() {
   const [monsters, setMonsters] = useState([]);
   const [searchInput, setSearchInput] = useState("");
+  const [filteredList, setFilteredList] = new useState(monsters);
 
   useEffect(() => {
     axios
@@ -17,6 +18,14 @@ function App() {
   const handleInputChange = (e) => {
     const value = e.target.value;
     setSearchInput(value);
+    filterMonsters();
+    console.log(filteredList);
+  };
+
+  const filterMonsters = () => {
+    const filteredMonsters = monsters.filter((monster) =>
+      monster.name.toLowerCase().includes(searchInput.toLowerCase)
+    );
   };
 
   return (
