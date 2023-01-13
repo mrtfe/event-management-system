@@ -4,27 +4,20 @@ import axios from "axios";
 
 function App() {
   const [monsters, setMonsters] = useState([]);
+  const [searchInput, setSearchInput] = useState("");
 
   useEffect(() => {
-    console.log("useEffect");
     axios
       .get("https://jsonplaceholder.typicode.com/users")
       .then(function (response) {
         setMonsters(response.data);
-        console.log(response.data);
       });
   }, []);
 
-  // useEffect(() => {
-  //   fetch("https://jsonplaceholder.typicode.com/users")
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       setMonsters(data);
-  //       console.log(data);
-  //     })
-
-  //     .catch((err) => console.log("error occured"));
-  // }, []);
+  const handleInputChange = (e) => {
+    const value = e.target.value;
+    setSearchInput(value);
+  };
 
   return (
     <div className="App">
@@ -32,17 +25,16 @@ function App() {
       <input
         type={"search"}
         placeholder={"search monster"}
-        onChange={() => {
-          console.log("search changed");
+        onChange={(e) => {
+          handleInputChange(e);
         }}
       />
       <div className="monsters-box">
-        <p>monster list</p>
         {monsters.map((monster) => {
           return (
-            <div className="monster" key={monster.id}>
+            <h3 className="monster" key={monster.id}>
               {monster.name}
-            </div>
+            </h3>
           );
         })}
       </div>
