@@ -11,9 +11,20 @@ function App() {
       .get("https://jsonplaceholder.typicode.com/users")
       .then(function (response) {
         setMonsters(response.data);
-        console.log(monsters);
+        console.log(response.data);
       });
   }, []);
+
+  // useEffect(() => {
+  //   fetch("https://jsonplaceholder.typicode.com/users")
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       setMonsters(data);
+  //       console.log(data);
+  //     })
+
+  //     .catch((err) => console.log("error occured"));
+  // }, []);
 
   return (
     <div className="App">
@@ -27,6 +38,13 @@ function App() {
       />
       <div className="monsters-box">
         <p>monster list</p>
+        {monsters.map((monster) => {
+          return (
+            <div className="monster" key={monster.id}>
+              {monster.name}
+            </div>
+          );
+        })}
       </div>
     </div>
   );
